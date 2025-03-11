@@ -139,6 +139,10 @@
     @apply text-[64px] font-black leading-[64px];
   }
 
+  .g1 {
+    background: linear-gradient(rgba(196, 203, 245, 0.5), transparent);
+  }
+
   .g5 {
     background: linear-gradient(#334679, #162561);
   }
@@ -146,6 +150,11 @@
   .g4 {
     background: linear-gradient(#253575, #162561);
   }
+
+  .g7 {
+    background: linear-gradient(#1b275a, #0e1434);
+  }
+
 
   .inner-before {
     @apply before:bg-[linear-gradient(#1b275a,#0e1434)] before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-500 before:content-[''];
@@ -157,6 +166,33 @@
 
   .glow-before::before {
     background: linear-gradient(to right, transparent, #2ef2ff, transparent);
+  }
+
+  .feature-after {
+    @apply relative;
+  }
+
+  .feature-after::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    mix-blend-mode: soft-light;
+    background-image: linear-gradient(rgba(196, 203, 245, 0.5), transparent);
+  }
+
+  @media (max-width: 768px) {
+    .feature-after::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .max-md\:custom-g7 {
+      background: linear-gradient(#1b275a, #0e1434);
+    }
   }
 
 
