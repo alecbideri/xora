@@ -10,7 +10,7 @@ const Features = () => {
         <div className="container">
           <div className="relative border-2 border-s3 rounded-7xl md:overflow-hidden max-md:border-none max-md:rounded-none">
             {/* Feature Sections in a Flex Row */}
-            <div className="flex md:flex-wrap flex-nowrap max-md:flex-col md:g7 max-md:gap-3">
+            <div className="flex md:flex-wrap flex-nowrap px-2 max-md:flex-col md:g7 max-md:gap-3">
               {features.map(({ id, icon, title, caption, text, button }) => (
                 <div
                   key={id}

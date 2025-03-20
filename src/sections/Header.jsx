@@ -2,12 +2,6 @@ import { Link as LinkScroll } from "react-scroll";
 import React, { useEffect } from "react";
 import clsx from "clsx";
 
-const NavLink = ({ title }) => (
-  <LinkScroll className="base-bold text-p4 uppercase transition duration-500 cursor-pointer hover:text-p1 max-lg:my-4 max-lg:!text-[32px] max-lg:!font-semibold max-lg:!leading-[40px]">
-    {title}
-  </LinkScroll>
-);
-
 const Header = () => {
   const [hasScrolled, setHasScrolled] = React.useState(true);
   const [isOpen, setIsOpen] = React.useState(false);
@@ -23,6 +17,20 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const NavLink = ({ title }) => (
+    <LinkScroll
+      onClick={() => setIsOpen(false)}
+      to={title}
+      offset={-100}
+      spy
+      smooth
+      activeClass="nav-active"
+      className="base-bold text-p4 uppercase transition duration-500 cursor-pointer hover:text-p1 max-lg:my-4 max-lg:!text-[32px] max-lg:!font-semibold max-lg:!leading-[40px]"
+    >
+      {title}
+    </LinkScroll>
+  );
 
   return (
     <header
