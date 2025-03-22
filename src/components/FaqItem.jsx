@@ -1,19 +1,18 @@
-import React from "react";
 import clsx from "clsx";
+import { useState } from "react";
 import { SlideDown } from "react-slidedown";
 import "react-slidedown/lib/slidedown.css";
 
 const FaqItem = ({ item, index }) => {
-  const [activeId, setActiveId] = React.useState(null);
+  const [activeId, setActiveId] = useState(null);
+
   const active = activeId === item.id;
 
   return (
     <div className="relative z-2 mb-16">
-      {/* Clickable header */}
       <div
-        className="group relative flex cursor-pointer items-center justify-between gap-10 px-7 z-10"
+        className="group relative flex cursor-pointer items-center justify-between gap-10 px-7"
         onClick={() => {
-          console.log("Clicked item:", item.id, "Current activeId:", activeId); // Debug log
           setActiveId(activeId === item.id ? null : item.id);
         }}
       >
@@ -31,28 +30,27 @@ const FaqItem = ({ item, index }) => {
             {item.question}
           </div>
         </div>
+
         <div
           className={clsx(
-            "relative flex size-12 items-center justify-center rounded-full border-2 border-s2 shadow-400 transition-all duration-500",
-            "before:absolute before:h-0.5 before:w-3 before:content-['']",
-            "after:absolute after:h-0.5 after:w-3 after:transition-all after:duration-500 after:content-['']",
-            active
-              ? "before:bg-p1 after:bg-p1 after:rotate-0"
-              : "before:bg-p3 after:bg-p3 after:rotate-90",
+            "faq-icon relative flex size-12 items-center justify-center rounded-full border-2 border-s2 shadow-400 transition-all duration-500 group-hover:border-s4",
+            active && "before:bg-p1 after:rotate-0 after:bg-p1",
           )}
         >
-          <div className="g-4 size-11/12 rounded-full shadow-300 pointer-events-none"></div>
+          <div className="g4 size-11/12 rounded-full shadow-300" />
         </div>
       </div>
 
-      <SlideDown className="px-7">
-        {active && <div className="body-3 py-3.5 px-7 ">{item.answer}</div>}
+      <SlideDown>
+        {activeId === item.id && (
+          <div className="body-3 px-7 py-3.5">{item.answer}</div>
+        )}
       </SlideDown>
 
       <div
         className={clsx(
-          "absolute -top-7 -bottom-7 left-0 right-0 -z-1 rounded-3xl transition-opacity duration-500 pointer-events-none",
-          active ? "opacity-100 g5" : "opacity-0 bg-transparent",
+          "g5 -bottom-7 -top-7 left-0 right-0 -z-1 rounded-3xl opacity-0 transition-opacity duration-500 absolute",
+          active && "opacity-100",
         )}
       >
         <div className="g4 absolute inset-0.5 -z-1 rounded-3xl" />
@@ -61,5 +59,4 @@ const FaqItem = ({ item, index }) => {
     </div>
   );
 };
-
 export default FaqItem;
